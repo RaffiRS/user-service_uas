@@ -4,28 +4,20 @@ type User {
   email: String!
   phone: String
   address: String
-  role: String
+  role: String!
 }
 
 type AuthPayload {
   token: String!
+  user: User!
 }
 
 type Query {
-  users: [User]
   me: User
+  userById(id: ID!): User
 }
 
 type Mutation {
-  register(
-    name: String!
-    email: String!
-    password: String!
-    role: String!
-  ): User
-
-  login(
-    email: String!
-    password: String!
-  ): AuthPayload
+  register(name: String!, email: String!, password: String!, phone: String, address: String): User
+  login(email: String!, password: String!): AuthPayload
 }
