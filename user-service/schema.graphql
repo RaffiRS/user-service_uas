@@ -2,6 +2,9 @@ type User {
   id: ID!
   name: String!
   email: String!
+  phone: String
+  address: String
+  role: String
 }
 
 type AuthPayload {
@@ -9,10 +12,20 @@ type AuthPayload {
 }
 
 type Query {
+  users: [User]
   me: User
 }
 
 type Mutation {
-  register(name: String!, email: String!, password: String!): User
-  login(email: String!, password: String!): AuthPayload
+  register(
+    name: String!
+    email: String!
+    password: String!
+    role: String!
+  ): User
+
+  login(
+    email: String!
+    password: String!
+  ): AuthPayload
 }
